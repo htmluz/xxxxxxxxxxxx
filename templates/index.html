@@ -1,0 +1,39 @@
+{{ block "index" . }}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:D</title>
+    <script src="https://unpkg.com/htmx.org@2.0.2"></script>
+  </head>
+  <body>
+    <h2>_\|/_</h2>
+    {{ template "form" . }}
+    <hr />
+    {{ template "display" . }}
+  </body>
+</html>
+{{ end }}
+
+{{ block "form" . }}
+  <form hx-post="addessabosta" hx-target="#todo-bosta" hx-swap="beforeend">
+    <input type="text" name="task" placeholder="adiocioa eessa bosta ai"/>
+    <button type="submit">420</button>
+  </form>
+{{ end }}
+
+{{ block "display" . }}
+  <div id="todo-bosta">
+    {{ range . }}
+      <div id={{ .ID }} style="">
+        <span>{{ .Task }}</span>
+        <button hx-get="/deleteessabosta?id={{.ID}}" hx-target="closest div" hx-swap="outerHTML">apag</button>
+      </div>
+    {{ else }}
+      <div>
+        <span>ada pra faze nessa bosta</span>
+      </div>
+    {{ end }}
+  </div>
+{{ end }}
