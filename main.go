@@ -41,10 +41,10 @@ func addEssaBosta(w http.ResponseWriter, r *http.Request) {
 		nextID++
 		todoLock.Unlock()
 		html := fmt.Sprintf(`
-			<div id=%d style="">
-				<span>%s</span>
-				<button hx-get="/deleteessabosta?id=%d" hx-target="closest div" hx-swap="outerHTML">apag</button>
-			</div>
+      <div class="todo" id=%d >
+        <span>%s</span>
+        <button hx-get="/deleteessabosta?id=%d" hx-target="closest div" hx-swap="outerHTML">apag</button>
+      </div>
 		`, newTodo.ID, newTodo.Task, newTodo.ID)
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.Write([]byte(html))
